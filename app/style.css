@@ -1,0 +1,13 @@
+li {
+	cursor: pointer;
+}
+
+.fave {
+	color: green;
+	font-weight: bold;
+}
+
+.badge {
+  background-color: white;
+  color: black;
+}

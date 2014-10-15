@@ -1,0 +1,95 @@
+<!-- index.html //-->
+<!doctype html>
+<html lang="en" ng-app="icecream">
+    <head>
+        <title>Ice Cream</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body ng-controller="IceCreamController as ctrl" class="container">
+
+    	<div>
+    		<h3>Ice Cream!</h3>
+    	</div>
+    	<div class="row">
+	    	<div class="well col-md-6 form-horizontal" role="form">
+	    		<div class="form-group">
+		        <label class="col-sm-4 control-label">Add flavor:</label>
+		        <input type="text"
+		        			 class="col-sm-5"
+		        			 ng-model="ctrl.newFlavor" />
+		        <button class="btn btn-default pull-right"
+		        				ng-click="ctrl.addFlavor()"
+		        				ng-disabled="ctrl.newFlavor == null">
+		        	Add Flavor
+		        </button>
+		      </div>
+		      <div class="form-group">
+		      	<label class="col-sm-4 control-label">Number of scoops:</label>
+		      	<input type="number"
+		      				 min="0"
+		        			 class="col-sm-2"
+		      				 ng-model="ctrl.numScoops"
+		      	/>
+		      	<label class="col-sm-4 control-label">
+		      		<input type="checkbox" ng-model="ctrl.favesOnly">
+		      		Favorites only?
+		      	</label>
+		      	<button class="btn btn-primary pull-right"
+		      					ng-click="ctrl.serveCombo()">
+		      		Serve!
+		      	</button>
+		      </div>
+	      </div>
+	    </div>
+    	<div class="row">
+    		<div class="well col-md-10">
+	    		<div class="col-md-2">
+			    	<ul id="flavors" class="list-group">
+			    		<li class="list-group-item active">
+			    			<span class="badge">{{ctrl.flavors.length}}</span>
+			    			Flavors
+			    		</li>
+			    		<li ng-repeat="f in ctrl.flavors"
+			    				class="list-group-item"
+			    				ng-class="ctrl.cssClassesForFlavor(f)"
+			    				ng-click="ctrl.changeFaveStatus(f)">
+			    			{{f}}
+			    		</li>
+			    	</ul>
+	    		</div>
+	    		<div class="col-md-2">
+			    	<ul id="faves" class="list-group">
+			    		<li class="list-group-item active">
+			    			<span class="badge">{{ctrl.faveFlavors.length}}</span>
+			    			Favorites
+			    		</li>
+			    		<li ng-repeat="fav in ctrl.faveFlavors"
+			    				class="list-group-item"
+			    				ng-click="ctrl.changeFaveStatus(fav)">
+			    			{{fav}}
+			    		</li>
+			    	</ul>
+	    		</div>
+	    		<div class="col-md-4">
+			    	<ul id="combos" class="list-group">
+			    		<li class="list-group-item active">
+			    			<span class="badge">{{ctrl.combinations.length}}</span>
+			    			Combinations
+			    		</li>
+			    		<li ng-repeat="c in ctrl.combinations track by $index"
+			    				class="list-group-item"
+			    				ng-click="ctrl.removeCombo(c)">
+			    			{{c}}
+			    		</li>
+			    	</ul>
+	    		</div>
+	    	</div>
+    	</div>
+
+<!--  Load javascript at the END of the page. -->
+      <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-rc.5/angular.js"></script>
+      <script src="app.js"></script>
+
+    </body>
+</html>
